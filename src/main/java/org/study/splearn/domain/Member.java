@@ -1,31 +1,39 @@
 package org.study.splearn.domain;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.ToString;
+
+import java.util.Objects;
+
+import static org.springframework.util.Assert.*;
+
+@Getter
+@ToString
 public class Member {
+
     private String email;
     private String passwordHash;
     private String nickname;
     private MemberStatus status;
 
     public Member(String email, String passwordHash, String nickname) {
-        this.email = email;
-        this.passwordHash = passwordHash;
-        this.nickname = nickname;
+        this.email = Objects.requireNonNull(email);
+        this.passwordHash = Objects.requireNonNull(passwordHash);
+        this.nickname = Objects.requireNonNull(nickname);
+
         this.status = MemberStatus.PENDING;
     }
 
-    public String getEmail() {
-        return email;
+    public void activate() {
+        state(status == MemberStatus.PENDING, "PENDING 상태가 아닙니다.");
+
+        this.status = MemberStatus.ACTIVE;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
-    }
+    public void deactivate() {
+        state(status == MemberStatus.ACTIVE, "ACTIVE 상태가 아닙니다.");
 
-    public String getNickname() {
-        return nickname;
-    }
-
-    public MemberStatus getStatus() {
-        return status;
+        this.status = MemberStatus.DEACTIVATED;
     }
 }
