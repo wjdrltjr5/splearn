@@ -24,9 +24,9 @@ class MemberTest {
             }
         };
 
-        var createRequest = new MemberCreateRequest("wjdrltjr5@splearn.app", "wjdrltjr", "secret");
+        var createRequest = new MemberRegisterRequest("wjdrltjr5@splearn.app", "wjdrltjr", "secret");
 
-        member = Member.create( createRequest, passwordEncoder);
+        member = Member.register( createRequest, passwordEncoder);
 
     }
 
@@ -133,7 +133,7 @@ class MemberTest {
         // when
         // then
         assertThatThrownBy(() ->
-                    Member.create(new MemberCreateRequest("invalid email", "test", "secret"), passwordEncoder)
+                    Member.register(new MemberRegisterRequest("invalid email", "test", "secret"), passwordEncoder)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
