@@ -3,6 +3,7 @@ package org.study.splearn.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
+import static org.study.splearn.domain.MemberFixture.createMemberResisterRequest;
 
 
 class MemberTest {
@@ -12,22 +13,8 @@ class MemberTest {
 
     @BeforeEach
     void setUp() {
-        this.passwordEncoder = new PasswordEncoder() {
-            @Override
-            public String encode(String password) {
-                return password.toUpperCase();
-            }
-
-            @Override
-            public boolean matches(String password, String passwordHash) {
-                return encode(password).equals(passwordHash);
-            }
-        };
-
-        var createRequest = new MemberRegisterRequest("wjdrltjr5@splearn.app", "wjdrltjr", "secret");
-
-        member = Member.register( createRequest, passwordEncoder);
-
+        this.passwordEncoder = MemberFixture.craetePasswordEncoder();
+        member = Member.register( MemberFixture.createMemberRequest(), this.passwordEncoder);
     }
 
     @Test
@@ -133,7 +120,7 @@ class MemberTest {
         // when
         // then
         assertThatThrownBy(() ->
-                    Member.register(new MemberRegisterRequest("invalid email", "test", "secret"), passwordEncoder)
+                    Member.register(createMemberResisterRequest("invalid email"), passwordEncoder)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
