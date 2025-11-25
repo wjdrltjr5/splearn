@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.study.splearn.domain.Member;
-import org.study.splearn.domain.MemberFixture;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -22,7 +21,7 @@ class MemberRepositoryTest {
 
     @Test
     void createMember() {
-        Member member = Member.register(createMemberRequest(), craetePasswordEncoder());
+        Member member = Member.register(createMemberRegisterRequest(), craetePasswordEncoder());
 
         memberRepository.save(member);
 
@@ -34,11 +33,11 @@ class MemberRepositoryTest {
     @Test
     void duplicateEmailFail() {
         // given
-        Member member = Member.register(createMemberRequest(), craetePasswordEncoder());
+        Member member = Member.register(createMemberRegisterRequest(), craetePasswordEncoder());
         memberRepository.save(member);
         // when
         // then
-        Member member2 = Member.register(createMemberRequest(), craetePasswordEncoder());
+        Member member2 = Member.register(createMemberRegisterRequest(), craetePasswordEncoder());
         assertThatThrownBy(() -> memberRepository.save(member2)).isInstanceOf(DataIntegrityViolationException.class);
 
     }

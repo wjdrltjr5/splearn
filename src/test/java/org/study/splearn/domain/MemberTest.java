@@ -3,7 +3,7 @@ package org.study.splearn.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
-import static org.study.splearn.domain.MemberFixture.createMemberResisterRequest;
+import static org.study.splearn.domain.MemberFixture.createMemberRegisterRequest;
 
 
 class MemberTest {
@@ -14,7 +14,7 @@ class MemberTest {
     @BeforeEach
     void setUp() {
         this.passwordEncoder = MemberFixture.craetePasswordEncoder();
-        member = Member.register( MemberFixture.createMemberRequest(), this.passwordEncoder);
+        member = Member.register( MemberFixture.createMemberRegisterRequest(), this.passwordEncoder);
     }
 
     @Test
@@ -120,7 +120,7 @@ class MemberTest {
         // when
         // then
         assertThatThrownBy(() ->
-                    Member.register(createMemberResisterRequest("invalid email"), passwordEncoder)
+                    Member.register(createMemberRegisterRequest("invalid email"), passwordEncoder)
         ).isInstanceOf(IllegalArgumentException.class);
     }
 

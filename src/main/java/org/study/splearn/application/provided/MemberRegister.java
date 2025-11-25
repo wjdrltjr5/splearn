@@ -1,5 +1,6 @@
 package org.study.splearn.application.provided;
 
+import org.springframework.stereotype.Component;
 import org.study.splearn.domain.Member;
 import org.study.splearn.domain.MemberRegisterRequest;
 
