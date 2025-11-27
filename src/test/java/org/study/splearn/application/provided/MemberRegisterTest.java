@@ -1,5 +1,6 @@
 package org.study.splearn.application.provided;
 
+import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
@@ -27,5 +28,17 @@ public record MemberRegisterTest(MemberRegister memberRegister) {
         Member member = memberRegister.register(MemberFixture.createMemberRegisterRequest());
 
         assertThatThrownBy(() -> memberRegister.register(MemberFixture.createMemberRegisterRequest())).isInstanceOf(DuplicateEmailException.class);
+    }
+
+    @Test
+    void memberRegisterRequestFail(){
+        extracted(new MemberRegisterRequest("wjdrltjr5@naver.com", "wjdrltjr", "1"));
+        extracted(new MemberRegisterRequest("wjdrltjr5naver.com", "wjdrltjr", "12334567"));
+        extracted(new MemberRegisterRequest("wjdrltjr5@naver.com", "w", "1234455555"));
+
+    }
+
+    private void extracted(MemberRegisterRequest invalid) {
+        assertThatThrownBy(() -> memberRegister.register(invalid)).isInstanceOf(ConstraintViolationException.class);
     }
 }

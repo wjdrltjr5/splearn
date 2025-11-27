@@ -72,7 +72,7 @@ class MemberTest {
         // given
         // when
         // then
-        assertThat(member.verifyPassword("secret", passwordEncoder)).isTrue();
+        assertThat(member.verifyPassword("secret111", passwordEncoder)).isTrue();
     }
 
     @Test
@@ -80,7 +80,7 @@ class MemberTest {
         // given
         // when
         // then
-        assertThat(member.verifyPassword("test", passwordEncoder)).isFalse();
+        assertThat(member.verifyPassword("test11", passwordEncoder)).isFalse();
     }
 
     @Test

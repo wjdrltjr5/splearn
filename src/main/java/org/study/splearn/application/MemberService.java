@@ -3,14 +3,17 @@ package org.study.splearn.application;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.study.splearn.application.provided.MemberRegister;
 import org.study.splearn.application.required.EmailSender;
 import org.study.splearn.application.required.MemberRepository;
 import org.study.splearn.domain.*;
 
-import java.util.Optional;
 
 @Service
+@Transactional
+@Validated
 @RequiredArgsConstructor
 public class MemberService implements MemberRegister {
 

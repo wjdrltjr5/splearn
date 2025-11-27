@@ -1,6 +1,7 @@
 package org.study.splearn.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +32,7 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberStatus status;
 
-    public static Member register(MemberRegisterRequest registerRequest, PasswordEncoder passwordEncoder) {
+    public static Member register(@Valid MemberRegisterRequest registerRequest, PasswordEncoder passwordEncoder) {
         Member member = new Member();
 
         member.email = new Email(registerRequest.email());

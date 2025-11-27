@@ -1,6 +1,6 @@
 package org.study.splearn.application.provided;
 
-import org.springframework.stereotype.Component;
+import jakarta.validation.Valid;
 import org.study.splearn.domain.Member;
 import org.study.splearn.domain.MemberRegisterRequest;
 
@@ -8,5 +8,5 @@ import org.study.splearn.domain.MemberRegisterRequest;
  * 회원의 등록과 관련된 기능을 제공한다.
  * */
 public interface MemberRegister {
-    Member register(MemberRegisterRequest registerRequest);
+    Member register(@Valid MemberRegisterRequest registerRequest);
 }
