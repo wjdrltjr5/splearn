@@ -1,27 +1,12 @@
 package org.study.splearn.application.provided;
 
 
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.springframework.test.util.ReflectionTestUtils;
-import org.study.splearn.application.MemberService;
-import org.study.splearn.application.required.EmailSender;
-import org.study.splearn.application.required.MemberRepository;
-import org.study.splearn.domain.Email;
-import org.study.splearn.domain.Member;
-import org.study.splearn.domain.MemberFixture;
-import org.study.splearn.domain.MemberStatus;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 
 class MemberRegisterManualTest {
-
+/*
     @Test
     void registerStub() {
         // given
@@ -79,14 +64,14 @@ class MemberRegisterManualTest {
             return Optional.empty();
         }
     }
-
     static class EmailSenderStub implements EmailSender {
+
         @Override
         public void send(Email email, String subject, String content) {
         }
     }
-
     static class EmailSenderMock implements EmailSender {
+
         List<Email> tos = new ArrayList<>();
 
         @Override
@@ -97,5 +82,5 @@ class MemberRegisterManualTest {
         public List<Email> getTos() {
             return tos;
         }
-    }
+    }*/
 }

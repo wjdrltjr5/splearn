@@ -9,4 +9,6 @@ import org.study.splearn.domain.MemberRegisterRequest;
  * */
 public interface MemberRegister {
     Member register(@Valid MemberRegisterRequest registerRequest);
+
+    Member activate(Long memberId);
 }
