@@ -33,12 +33,10 @@ class MemberRepositoryTest {
     @Test
     void duplicateEmailFail() {
         // given
-        Member member = Member.register(createMemberRegisterRequest(), craetePasswordEncoder());
-        memberRepository.save(member);
+        memberRepository.save(Member.register(createMemberRegisterRequest(), craetePasswordEncoder()));
         // when
         // then
-        Member member2 = Member.register(createMemberRegisterRequest(), craetePasswordEncoder());
-        assertThatThrownBy(() -> memberRepository.save(member2)).isInstanceOf(DataIntegrityViolationException.class);
+        assertThatThrownBy(() -> memberRepository.save(Member.register(createMemberRegisterRequest(), craetePasswordEncoder()))).isInstanceOf(DataIntegrityViolationException.class);
 
     }
 }
