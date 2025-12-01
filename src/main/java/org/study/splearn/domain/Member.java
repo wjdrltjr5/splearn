@@ -13,7 +13,7 @@ import static java.util.Objects.*;
 import static org.springframework.util.Assert.*;
 
 @Getter
-@ToString
+@ToString(callSuper = true)
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @NaturalIdCache
