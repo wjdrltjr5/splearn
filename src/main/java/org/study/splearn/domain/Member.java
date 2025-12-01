@@ -17,19 +17,15 @@ import static org.springframework.util.Assert.*;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @NaturalIdCache
-public class Member {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Member extends AbstractEntity {
 
     @NaturalId
-    @Embedded
     private Email email;
 
     private String passwordHash;
 
     private String nickname;
 
-    @Enumerated(EnumType.STRING)
     private MemberStatus status;
 
     public static Member register(@Valid MemberRegisterRequest registerRequest, PasswordEncoder passwordEncoder) {
