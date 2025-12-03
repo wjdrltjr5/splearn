@@ -2,9 +2,9 @@ package org.study.splearn;
 
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.study.splearn.application.required.EmailSender;
-import org.study.splearn.domain.MemberFixture;
-import org.study.splearn.domain.PasswordEncoder;
+import org.study.splearn.application.member.required.EmailSender;
+import org.study.splearn.domain.member.MemberFixture;
+import org.study.splearn.domain.member.PasswordEncoder;
 @TestConfiguration
 public class SplearnTestConfiguration {
     @Bean

@@ -1,4 +1,4 @@
-package org.study.splearn.domain;
+package org.study.splearn.domain.member;
 
 public class MemberFixture {
 

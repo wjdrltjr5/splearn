@@ -1,7 +1,7 @@
-package org.study.splearn.application.required;
+package org.study.splearn.application.member.required;
 
 import org.springframework.stereotype.Component;
-import org.study.splearn.domain.Email;
+import org.study.splearn.domain.shared.Email;
 
 /**
  * 이메일을 발송한다.

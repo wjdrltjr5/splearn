@@ -1,4 +1,4 @@
-package org.study.splearn.application.provided;
+package org.study.splearn.application.member.provided;
 
 import jakarta.persistence.EntityManager;
 import jakarta.validation.ConstraintViolationException;
@@ -7,7 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.Transactional;
 import org.study.splearn.SplearnTestConfiguration;
-import org.study.splearn.domain.*;
+import org.study.splearn.application.member.provided.MemberRegister;
+import org.study.splearn.domain.member.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -22,6 +23,7 @@ record MemberRegisterTest(MemberRegister memberRegister, EntityManager entityMan
         Member member = memberRegister.register(MemberFixture.createMemberRegisterRequest());
         assertThat(member.getId()).isNotNull();
         assertThat(member.getStatus()).isEqualTo(MemberStatus.PENDING);
+        assertThat(member.getDetail().getRegisteredAt()).isNotNull();
     }
 
     @Test

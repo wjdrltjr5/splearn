@@ -1,4 +1,4 @@
-package org.study.splearn.application.provided;
+package org.study.splearn.application.member.provided;
 
 
 import static org.assertj.core.api.Assertions.assertThat;

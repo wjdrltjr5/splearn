@@ -1,4 +1,4 @@
-package org.study.splearn.domain;
+package org.study.splearn.domain.shared;
 
 import jakarta.persistence.Embeddable;
 

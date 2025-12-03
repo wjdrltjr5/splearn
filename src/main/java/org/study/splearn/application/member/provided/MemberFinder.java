@@ -1,6 +1,6 @@
-package org.study.splearn.application.provided;
+package org.study.splearn.application.member.provided;
 
-import org.study.splearn.domain.Member;
+import org.study.splearn.domain.member.Member;
 /**
  * 회원을 조회한다.
  * */
