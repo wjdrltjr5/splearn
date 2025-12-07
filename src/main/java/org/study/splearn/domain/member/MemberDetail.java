@@ -1,5 +1,6 @@
 package org.study.splearn.domain.member;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;

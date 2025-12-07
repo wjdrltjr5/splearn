@@ -9,11 +9,10 @@ import org.study.splearn.application.member.provided.MemberFinder;
 import org.study.splearn.application.member.provided.MemberRegister;
 import org.study.splearn.application.member.required.EmailSender;
 import org.study.splearn.application.member.required.MemberRepository;
-import org.study.splearn.domain.member.Member;
-import org.study.splearn.domain.member.MemberRegisterRequest;
-import org.study.splearn.domain.member.PasswordEncoder;
-import org.study.splearn.domain.member.DuplicateEmailException;
+import org.study.splearn.domain.member.*;
 import org.study.splearn.domain.shared.Email;
+
+import java.util.Optional;
 
 
 @Service
@@ -51,6 +50,20 @@ public class MemberModifyService implements MemberRegister {
         return memberRepository.save(member); // 더티체킹이 아니라 이렇게 하는 이유는 spring data에서는 update 상황에서도 save를 호출하라고 공식적으로 말한다.
         // 이유는 => 스프링 데이터는 Jpa만을 위한 기술이 아니다. noSQL등 여러 기술이 포함된 기술 즉 스프링 데이터는 추상화 기술 추후에 다른 종류 NoSql로 변경되더라도 손댈 필요가 없다.
         // 이유2 => Spring domain event을 발생시키기 위해서
+    }
+
+    @Override
+    public Member deactivate(Long memberId) {
+        Member member = memberFinder.find(memberId);
+        member.deactivate();
+        return memberRepository.save(member);
+    }
+
+    @Override
+    public Member updateInfo(Long memberId, MemberInfoUpdateRequest memberInfoUpdateRequest) {
+        Member member = memberFinder.find(memberId);
+        member.updateInfo(memberInfoUpdateRequest);
+        return memberRepository.save(member);
     }
 
     private void sendWelcomeEmail(Member member) {
