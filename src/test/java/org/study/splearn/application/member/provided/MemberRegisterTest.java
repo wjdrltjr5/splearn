@@ -69,8 +69,22 @@ record MemberRegisterTest(MemberRegister memberRegister, EntityManager entityMan
         member = memberRegister.updateInfo(member.getId(), request);
 
         assertThat(member.getDetail().getProfile().address()).isEqualTo("wjdrltjr5");
+    }
+
+    @Test
+    void updateInfoFail() {
+        Member member = registerMember();
+        memberRegister.activate(member.getId());
+        memberRegister.updateInfo(member.getId(), new MemberInfoUpdateRequest("newNickname", "wjdrltjr5", "자기소개"));
 
 
+        Member member2 = registerMember("wjdrltjr5@naver.com");
+        member2.activate();
+        entityManager.flush();
+        entityManager.clear();
+        assertThatThrownBy(() ->
+                memberRegister.updateInfo(member2.getId(), new MemberInfoUpdateRequest("James", "wjdrltjr5", "자기소개"))
+                ).isInstanceOf(DuplicateProfileException.class);
     }
 
     @Test
@@ -83,6 +97,13 @@ record MemberRegisterTest(MemberRegister memberRegister, EntityManager entityMan
 
     private Member registerMember() {
         Member member = memberRegister.register(MemberFixture.createMemberRegisterRequest());
+        entityManager.flush();
+        entityManager.clear();
+        return member;
+    }
+
+    private Member registerMember(String email) {
+        Member member = memberRegister.register(MemberFixture.createMemberRegisterRequest(email));
         entityManager.flush();
         entityManager.clear();
         return member;
