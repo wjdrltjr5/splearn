@@ -1,5 +1,7 @@
 package org.study.splearn.domain.member;
 
+import org.springframework.test.util.ReflectionTestUtils;
+
 public class MemberFixture {
 
     public static MemberRegisterRequest createMemberRegisterRequest() {
@@ -25,4 +27,9 @@ public class MemberFixture {
     }
 
 
+    public static Member createMember(Long id) {
+        Member member = Member.register(createMemberRegisterRequest(), craetePasswordEncoder());
+        ReflectionTestUtils.setField(member, "id", id);
+        return member;
+    }
 }
